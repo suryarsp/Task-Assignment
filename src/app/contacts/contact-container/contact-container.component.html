@@ -1,0 +1,59 @@
+<div fxLayout="row wrap" fxLayoutAlign="start center">
+<!-- Contact Header -->
+<div fxFlex="60" style="background-color: green;">
+
+  <!-- Contact Label and Header -->
+  <div>
+    <app-contact-header></app-contact-header>
+  </div>
+
+<!-- Contact Search and Actions -->
+
+  <div fxLayout="row wrap" fxLayoutAlign="start center">
+    <div fxFlex="40">
+      <mat-form-field  appearance="outline" class="search-bar">
+        <input type="text"
+               placeholder="Search contacts"
+               matInput
+               [formControl]="searchControl"
+               [matAutocomplete]="auto">
+               <mat-icon matPrefix>search</mat-icon>
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn">
+          <mat-option *ngFor="let c of filteredContacts | async" [value]="c">
+            {{c.firstName}} {{ c.lastName}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="15">
+      <button mat-raised-button>
+        <i class="material-icons">add</i>
+        Add Contact
+      </button>
+    </div>
+
+    <div fxFlex="15">
+      <button mat-raised-button color="warn">
+        <i class="material-icons">delete</i>
+        Delete Contact(s)
+      </button>
+    </div>
+  </div>
+
+  <!-- Contact List Details -->
+ <div>
+  <app-contact-list
+  [contacts]="contacts"
+  (contactSelectionChange)="contactSelectionChange($event)"
+  (editClicked)="editContact($event)"
+  ></app-contact-list>
+ </div>
+</div>
+
+
+<!-- Contact Display Information -->
+ <div fxFlex="40" style="background-color: indigo;">
+  <app-contact-information></app-contact-information>
+ </div>
+</div>

@@ -1,0 +1,43 @@
+*{
+  margin: 0px;
+  padding: 0px;
+}
+
+
+.example-container {
+  height: calc(100vh - 50px);
+}
+
+.main-search {
+  padding: 10px 0px 10px 20px;
+
+}
+
+.container {
+  padding: 5px;
+  background-color: lightblue;
+}
+
+.add-content {
+  font-size: 13px;
+}
+
+.navigation-icon {
+  font-size: 20px;
+  padding-right: 15px;
+}
+
+.active {
+  background-color: coral;
+}
+
+.mat-drawer {
+  width: 150px ;
+}
+
+ .collapsed > .mat-drawer  {
+    width: 60px !important;
+}
+
+
+
