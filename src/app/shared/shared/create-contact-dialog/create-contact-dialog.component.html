@@ -1,0 +1,110 @@
+
+    <h2>{{ headerTitle}}</h2>
+
+    <form [formGroup]="contactForm">
+      <div fxLayout="row wrap" fxLayoutAlign="space-between center" class="px-1">
+        <!-- First Name -->
+        <div fxFlex.gt-sm="50" fxFlex="100" class="px-1 pt-1">
+          <mat-form-field class="mb-1 full-width" appearance="outline">
+            <mat-label>First Name</mat-label>
+            <input #firstName class="capitalize" matInput placeholder="Enter first name" formControlName="firstName"
+              required>
+            <mat-error
+              *ngIf="contactForm.controls['firstName'].hasError('required') && contactForm.controls['firstName'].touched">
+              First name is required
+            </mat-error>
+            <mat-error *ngIf="contactForm.controls['firstName'].hasError('maxlength')">
+              First name cannot exceed 50 characters
+            </mat-error>
+            <mat-hint align="end">{{ firstName.value.length }}/ 50</mat-hint>
+          </mat-form-field>
+        </div>
+
+        <div fxFlex.gt-sm="50" fxFlex="100" class="px-1 pt-1 ">
+          <!-- Last Name -->
+          <mat-form-field class="mb-1 full-width" appearance="outline">
+            <mat-label>LastName</mat-label>
+            <input #lastName class="capitalize" matInput placeholder="Enter LastName" formControlName="lastName"
+              required>
+            <mat-error
+              *ngIf="contactForm.controls['lastName'].hasError('required') && contactForm.controls['lastName'].touched">
+              LastName is required
+            </mat-error>
+            <mat-error *ngIf="contactForm.controls['lastName'].hasError('maxlength')">
+              Last name cannot exceed 50 characters
+            </mat-error>
+            <mat-hint align="end">{{ lastName.value.length }}/ 50</mat-hint>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div fxLayout="row wrap" fxLayoutAlign="start start" class="px-1">
+        <div fxFlex="100" class="px-1">
+          <!-- Email Address -->
+          <mat-form-field class="mb10 full-width" appearance="outline">
+            <mat-label>E-Mail ID</mat-label>
+            <input #emailId matInput placeholder="Enter e-mail address" formControlName="emailAddress" type="email"
+              required>
+            <mat-error
+              *ngIf="contactForm.controls['emailAddress'].hasError('required') && contactForm.controls['emailAddress'].touched">
+              Email is required
+            </mat-error>
+            <mat-error *ngIf="contactForm.controls['emailAddress'].hasError('email')">
+              Enter valid email address
+            </mat-error>
+            <mat-hint align="end">{{ emailId.value.length }}/ 50</mat-hint>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div fxLayout="row wrap" fxLayoutAlign="start start" class="px-1">
+        <div fxFlex="100" class="px-1" >
+          <!-- Company -->
+          <mat-form-field class="mb10 full-width" appearance="outline">
+            <mat-label>Company</mat-label>
+            <input #company matInput placeholder="Enter company name" formControlName="company" type="email">
+            <mat-hint align="end">{{ company.value.length }}/ 50</mat-hint>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div fxLayout="row wrap" fxLayoutAlign="start start" class="px-1">
+        <div fxFlex="100" class="px-1" >
+          <!-- Phone Number -->
+          <mat-form-field class="mb10 full-width" appearance="outline">
+            <mat-label>Phone Number</mat-label>
+            <input #phone matInput placeholder="Enter phone number" formControlName="phoneNumber" type="text">
+            <mat-hint align="end">{{ phone.value.length }}/ 50</mat-hint>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div fxLayout="row wrap" fxLayoutAlign="start start" class="px-1">
+        <div fxFlex="100" class="px-1" >
+          <!-- Address -->
+          <mat-form-field class="mb10 full-width" appearance="outline">
+            <mat-label>Address</mat-label>
+            <textarea #address matInput placeholder="Enter address" minRows="4" formControlName="address"
+              type="text"> </textarea>
+            <mat-hint align="end">{{ address.value.length }}/ 50</mat-hint>
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+  <mat-divider></mat-divider>
+  <div fxLayout="row wrap" fxLayoutAlign="end end" class="mt-1">
+    <span fxFlex="10">
+      <button class="pr-1" mat-raised-button #saveBtn color="primary" [disabled]="contactForm.invalid"
+      [mat-dialog-close]="contactForm.value">
+      Save
+    </button>
+    </span>
+
+    <span fxFlex="10">
+      <button class="pr-1" mat-raised-button color="warn" type="button" mat-dialog-close>
+        Cancel
+      </button>
+    </span>
+
+
+  </div>

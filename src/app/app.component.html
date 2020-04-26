@@ -7,7 +7,7 @@
       <div fxFlex="10">
         <div>
           <button mat-mini-fab>
-            <i class="material-icons">search</i>
+            <i class="material-icons pointer">search</i>
           </button>
           </div>
       </div>
@@ -18,7 +18,7 @@
           <div fxFlex="7">
             <button mat-button>
               <span fxFlex>
-                <i class="material-icons add-content">add</i>
+                <i class="material-icons add-content pointer">add</i>
               </span>
               Add
               </button>
@@ -26,17 +26,24 @@
 
           <div fxFlex="2">
               <span>
-                <i class="material-icons">mail</i>
+                <i class="material-icons pointer">mail</i>
               </span>
           </div>
 
           <div fxFlex="20">
-
+            <mat-form-field>
+              <mat-label>Select contact</mat-label>
+              <mat-select (selectionChange)="onSelectLoginContact($event)">
+                <mat-option *ngFor="let contact of contactService.contacts | async" [value]="contact">
+                  {{contact.firstName}} {{ contact.lastName}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
 
           <div fxFlex="2">
             <span>
-              <i class="material-icons">notifications_none</i>
+              <i class="material-icons pointer">notifications_none</i>
             </span>
           </div>
 

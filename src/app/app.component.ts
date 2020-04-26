@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { Navigation } from './models';
+import { ContactService } from './services/contact.service';
+import { MatSelectChange } from '@angular/material/select';
+import { Contact } from './contacts/models';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +12,7 @@ import { Navigation } from './models';
 export class AppComponent {
   navigations: Navigation[];
 
-  constructor() {
+  constructor(public contactService: ContactService) {
     this.navigations = [
       {
         displayName: 'Home',
@@ -47,6 +50,11 @@ export class AppComponent {
   onCloseSideNav() {
       const container = document.querySelector('.example-container');
       toggleClass(container, 'collapsed');
+  }
+
+  onSelectLoginContact(event: MatSelectChange) {
+    const contact: Contact = event.value;
+    this.contactService.isLoggedIn(contact.contactId);
   }
 }
 

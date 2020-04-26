@@ -13,14 +13,24 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import {MatSelectModule} from '@angular/material/select';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import {MatCardModule} from '@angular/material/card';
+import {MatDividerModule} from '@angular/material/divider'
+
 
 // 3rd party imports
 import { AvatarModule } from 'ngx-avatar';
 import {  ReactiveFormsModule } from '@angular/forms';
+import { CreateContactDialogComponent } from './create-contact-dialog/create-contact-dialog.component';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { ChatDialogComponent } from './chat-dialog/chat-dialog.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [CreateContactDialogComponent, ConfirmationDialogComponent, ChatDialogComponent],
   imports: [
     CommonModule,
     FlexLayoutModule,
@@ -36,7 +46,13 @@ import {  ReactiveFormsModule } from '@angular/forms';
     MatFormFieldModule,
     MatInputModule,
     MatAutocompleteModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSelectModule,
+    MatDialogModule,
+    MatTooltipModule,
+    MatSnackBarModule,
+    MatCardModule,
+    MatDividerModule
   ],
   exports: [
     CommonModule,
@@ -53,7 +69,13 @@ import {  ReactiveFormsModule } from '@angular/forms';
     MatFormFieldModule,
     MatInputModule,
     MatAutocompleteModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSelectModule,
+    MatDialogModule,
+    MatTooltipModule,
+    MatSnackBarModule,
+    MatCardModule,
+    MatDividerModule
   ]
 })
 export class SharedModule { }

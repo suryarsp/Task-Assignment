@@ -1,3 +1,3 @@
-export * from './contact.interface';
+export * from './contact.class';
 export * from './Message.interface';
 export * from './MessageType.enum';

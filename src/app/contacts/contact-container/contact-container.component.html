@@ -17,7 +17,7 @@
                matInput
                [formControl]="searchControl"
                [matAutocomplete]="auto">
-               <mat-icon matPrefix>search</mat-icon>
+               <mat-icon matPrefix class="pointer">search</mat-icon>
         <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn">
           <mat-option *ngFor="let c of filteredContacts | async" [value]="c">
             {{c.firstName}} {{ c.lastName}}
@@ -27,14 +27,14 @@
     </div>
 
     <div fxFlex="15">
-      <button mat-raised-button>
+      <button mat-raised-button (click)="createContact()" [disabled]="selectedCount > 0">
         <i class="material-icons">add</i>
         Add Contact
       </button>
     </div>
 
-    <div fxFlex="15">
-      <button mat-raised-button color="warn">
+    <div fxFlex="15" *ngIf="selectedCount > 0">
+      <button mat-raised-button color="warn" (click)="deleteContacts()">
         <i class="material-icons">delete</i>
         Delete Contact(s)
       </button>
@@ -47,6 +47,7 @@
   [contacts]="contacts"
   (contactSelectionChange)="contactSelectionChange($event)"
   (editClicked)="editContact($event)"
+  (deleteClicked)="deleteContact($event)"
   ></app-contact-list>
  </div>
 </div>
