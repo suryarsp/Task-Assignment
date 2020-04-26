@@ -63,7 +63,6 @@
           <mat-form-field class="mb10 full-width" appearance="outline">
             <mat-label>Company</mat-label>
             <input #company matInput placeholder="Enter company name" formControlName="company" type="email">
-            <mat-hint align="end">{{ company.value.length }}/ 50</mat-hint>
           </mat-form-field>
         </div>
       </div>
@@ -74,7 +73,6 @@
           <mat-form-field class="mb10 full-width" appearance="outline">
             <mat-label>Phone Number</mat-label>
             <input #phone matInput placeholder="Enter phone number" formControlName="phoneNumber" type="text">
-            <mat-hint align="end">{{ phone.value.length }}/ 50</mat-hint>
           </mat-form-field>
         </div>
       </div>
@@ -86,13 +84,12 @@
             <mat-label>Address</mat-label>
             <textarea #address matInput placeholder="Enter address" minRows="4" formControlName="address"
               type="text"> </textarea>
-            <mat-hint align="end">{{ address.value.length }}/ 50</mat-hint>
           </mat-form-field>
         </div>
       </div>
     </form>
   <mat-divider></mat-divider>
-  <div fxLayout="row wrap" fxLayoutAlign="end end" class="mt-1">
+  <div fxLayout="row wrap" fxLayoutAlign="end end" class="mt5" mat-dialog-actions>
     <span fxFlex="10">
       <button class="pr-1" mat-raised-button #saveBtn color="primary" [disabled]="contactForm.invalid"
       [mat-dialog-close]="contactForm.value">

@@ -1,1 +1,80 @@
-<p>contact-information works!</p>
+<div class="contact-avatar">
+    <!-- Image -->
+  <div fxLayout="row wrap" fxLayoutAlign="center center">
+    <ngx-avatar size="90" name="{{ contactSelected.firstName}} {{ contactSelected.lastName}}"></ngx-avatar>
+</div>
+    <!-- FullName -->
+<div fxLayout="row wrap" fxLayoutAlign="center center" class="pt10">
+  <span class="displayName">{{contactSelected.firstName}} {{contactSelected.lastName}}</span>
+</div>
+    <!-- Role -->
+<div fxLayout="row wrap" fxLayoutAlign="center center" >
+  <p>Product Manager <em>@</em> {{contactSelected.company}}</p>
+</div>
+</div>
+
+<!-- Full Name -->
+<div fxLayout="row wrap" fxLayoutAlign="center center" class="pt-1 pb-1">
+  <div fxFlex="30">
+    <span>Full Name:</span>
+  </div>
+
+  <div fxFlex="50">
+    <span>{{contactSelected.firstName}} {{ contactSelected.lastName}}</span>
+  </div>
+</div>
+<mat-divider></mat-divider>
+
+<!-- Email -->
+<div fxLayout="row wrap" fxLayoutAlign="center center" class="pt-1 pb-1">
+  <div fxFlex="30">
+    <span>Email:</span>
+  </div>
+
+  <div fxFlex="50">
+    <span>{{contactSelected.emailAddress}}</span>
+  </div>
+</div>
+<mat-divider></mat-divider>
+
+<!-- Phone Number -->
+<div fxLayout="row wrap" fxLayoutAlign="center center" class="pt-1 pb-1">
+  <div fxFlex="30">
+    <span>Phone: </span>
+  </div>
+
+  <div fxFlex="50">
+    <span>{{contactSelected.firstName}}</span>
+  </div>
+</div>
+
+<!-- Company -->
+<mat-divider></mat-divider>
+<div fxLayout="row wrap" fxLayoutAlign="center center" class="pt-1 pb-1">
+  <div fxFlex="30">
+    <span>Company: </span>
+  </div>
+
+  <div fxFlex="50">
+    <span>{{contactSelected.company ?  contactSelected.company : 'No information provided'}}</span>
+  </div>
+</div>
+<mat-divider></mat-divider>
+
+<!-- Address -->
+<div fxLayout="row wrap" fxLayoutAlign="center center" class="pt-1 pb-1">
+  <div fxFlex="30">
+    <span>Address</span>
+  </div>
+
+  <div fxFlex="50">
+    <span>
+      <address>
+      {{ contactSelected.address}}
+    </address>
+  </span>
+  </div>
+</div>
+
+
+

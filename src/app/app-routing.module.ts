@@ -4,10 +4,16 @@ import { ContactContainerComponent } from './contacts/contact-container/contact-
 import { AppComponent } from './app.component';
 
 
-const routes: Routes = [ {
-  path: 'contacts',
-  loadChildren: () => import('./contacts/contacts.module').then(m => m.ContactsModule)
-}
+const routes: Routes = [
+  {
+  path: '',
+  redirectTo: 'contacts',
+  pathMatch: 'full'
+  },
+  {
+    path: 'contacts',
+    loadChildren: () => import('./contacts/contacts.module').then(m => m.ContactsModule)
+  }
 ];
 
 @NgModule({

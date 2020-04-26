@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-contact-header',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./contact-header.component.scss']
 })
 export class ContactHeaderComponent implements OnInit {
-
+  sortControl = new FormControl('date');
   constructor() { }
 
   ngOnInit(): void {

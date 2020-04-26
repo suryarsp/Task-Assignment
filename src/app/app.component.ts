@@ -3,6 +3,7 @@ import { Navigation } from './models';
 import { ContactService } from './services/contact.service';
 import { MatSelectChange } from '@angular/material/select';
 import { Contact } from './contacts/models';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +12,7 @@ import { Contact } from './contacts/models';
 })
 export class AppComponent {
   navigations: Navigation[];
+  loggedInControl = new FormControl('');
 
   constructor(public contactService: ContactService) {
     this.navigations = [
@@ -45,6 +47,10 @@ export class AppComponent {
         iconName: 'settings'
       }
     ];
+
+    this.contactService.currentContacts.subscribe((contacts) => {
+      this.loggedInControl.setValue(contacts.find(c => c.isLoggedIn));
+    });
   }
 
   onCloseSideNav() {
@@ -52,8 +58,7 @@ export class AppComponent {
       toggleClass(container, 'collapsed');
   }
 
-  onSelectLoginContact(event: MatSelectChange) {
-    const contact: Contact = event.value;
+  onSelectLoginContact(contact: Contact) {
     this.contactService.isLoggedIn(contact.contactId);
   }
 }

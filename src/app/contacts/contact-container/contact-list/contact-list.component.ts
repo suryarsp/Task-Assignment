@@ -15,6 +15,7 @@ export class ContactListComponent implements OnChanges, AfterViewInit {
   @Output() editClicked: EventEmitter<Contact> = new EventEmitter();
   @Output() contactSelectionChange: EventEmitter<{checked: boolean , contact: Contact}> = new EventEmitter();
   @Output() deleteClicked: EventEmitter<string> = new EventEmitter();
+  @Output() sendMessage: EventEmitter<Contact> = new EventEmitter();
   displayedColumns: string[] = ['add', 'basicInfo', 'company', 'chat', 'edit', 'delete'];
   dataSource: MatTableDataSource<Contact>;
 

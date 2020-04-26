@@ -1,1 +1,27 @@
-<p>contact-header works!</p>
+<div  class="contact-header">
+
+  <div fxFlex="8" fxFlexAlign="center" class="contact-icon">
+    <mat-icon svgIcon="contact-book"></mat-icon>
+  </div>
+
+  <div fxFlex="20" fxFlexAlign="center" class="pl-1">
+        <div style="float: left;">
+          <span>Contacts</span>
+        </div>
+  </div>
+
+  <div fxFlex="40" fxFlexAlign="center">
+    <span>Sort By :</span>
+    <span class="pl10">
+      <mat-form-field >
+        <mat-select [formControl]="sortControl">
+          <mat-option value="date">Date Created</mat-option>
+          <mat-option value="name">Name</mat-option>
+          <mat-option value="company">Company</mat-option>
+          <mat-option value="mail">Mail Address</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </span>
+  </div>
+
+</div>

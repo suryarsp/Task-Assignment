@@ -1,16 +1,15 @@
-<div fxLayout="row wrap" fxLayoutAlign="start center">
+<div fxLayout="row wrap" fxLayoutAlign="center end" fxLayoutGap="15px">
 <!-- Contact Header -->
-<div fxFlex="60" style="background-color: green;">
-
+<div fxFlex="60" fxFlex.lt-sm="100">
   <!-- Contact Label and Header -->
-  <div>
+  <div fxLayout="row" fxLayoutAlign="start center">
     <app-contact-header></app-contact-header>
   </div>
 
 <!-- Contact Search and Actions -->
 
-  <div fxLayout="row wrap" fxLayoutAlign="start center">
-    <div fxFlex="40">
+  <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutAlign.lt-sm="center center">
+    <div fxFlex="40" fxFlex.lt-sm="100">
       <mat-form-field  appearance="outline" class="search-bar">
         <input type="text"
                placeholder="Search contacts"
@@ -26,15 +25,15 @@
       </mat-form-field>
     </div>
 
-    <div fxFlex="15">
-      <button mat-raised-button (click)="createContact()" [disabled]="selectedCount > 0">
+    <div fxFlex="15" fxFlex.lt-sm="50">
+      <button mat-raised-button (click)="createContact()" [disabled]="selectedCount > 0" matTooltip="Add Contact">
         <i class="material-icons">add</i>
         Add Contact
       </button>
     </div>
 
-    <div fxFlex="15" *ngIf="selectedCount > 0">
-      <button mat-raised-button color="warn" (click)="deleteContacts()">
+    <div fxFlex="15" fxFlex.lt-sm="50" *ngIf="selectedCount > 0">
+      <button mat-raised-button color="warn" (click)="deleteContacts()" matTooltip="Delete Contact">
         <i class="material-icons">delete</i>
         Delete Contact(s)
       </button>
@@ -48,13 +47,14 @@
   (contactSelectionChange)="contactSelectionChange($event)"
   (editClicked)="editContact($event)"
   (deleteClicked)="deleteContact($event)"
+  (sendMessage)="sendMessageTo($event)"
   ></app-contact-list>
  </div>
 </div>
 
 
 <!-- Contact Display Information -->
- <div fxFlex="40" style="background-color: indigo;">
-  <app-contact-information></app-contact-information>
+ <div fxFlex="30" fxFlex.lt-sm="100" class="contact-view" >
+  <app-contact-information *ngIf="selectedContact" [contactSelected]="this.selectedContact"></app-contact-information>
  </div>
 </div>

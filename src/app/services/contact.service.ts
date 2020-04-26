@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Contact } from '../contacts/models';
+import { Contact, Message, MessageType } from '../contacts/models';
 import { MOCKCONTACTS as MOCK_CONTACTS } from 'src/assets/mockData/contacts';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { ContactsModule } from '../contacts/contacts.module';
@@ -44,6 +44,38 @@ export class ContactService {
         contact.isLoggedIn = true;
       } else {
         contact.isLoggedIn = false;
+      }
+      return contact;
+    }
+    );
+    this.contacts.next(contacts);
+  }
+
+  sendMessage(sender: Contact, receiver: Contact, message: string) {
+
+    const contacts = this.contacts.getValue().map( contact => {
+      if (contact.contactId === sender.contactId) {
+        contact.messages.push({
+          date: new Date(),
+          message,
+          messageType: MessageType.SENT,
+          to: {
+            id: receiver.contactId,
+            name: receiver.firstName + ' ' + receiver.lastName
+          }
+        });
+      }
+
+      if (contact.contactId === receiver.contactId) {
+        contact.messages.push({
+          date: new Date(),
+          message,
+          messageType: MessageType.RECIEVED,
+          from: {
+            id: sender.contactId,
+            name: sender.firstName + ' ' + sender.lastName
+          }
+        });
       }
       return contact;
     }

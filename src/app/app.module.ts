@@ -1,5 +1,5 @@
 // Angular Imports
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
@@ -13,7 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ContactsModule } from './contacts/contacts.module';
 import { SharedModule } from './shared/shared/shared.module';
-
+import { MatIconRegistry } from '@angular/material/icon';
 @NgModule({
   declarations: [
     AppComponent
@@ -29,4 +29,9 @@ import { SharedModule } from './shared/shared/shared.module';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+  constructor(matIconRegistry: MatIconRegistry, domSanitizer: DomSanitizer) {
+    matIconRegistry.addSvgIcon('contact-book', domSanitizer.bypassSecurityTrustResourceUrl('../assets/icons/add.svg'));
+  }
+ }

@@ -1,12 +1,16 @@
 import { MessageType } from './MessageType.enum';
 
 export interface Message {
-  messageId: string;
   messageType: MessageType;
   message: string;
-  conactedPerson: {
-    contactId: string;
-    contactName: string;
+  date: Date | string;
+  from ?: {
+    id: string;
+    name: string;
+  };
+  to ?: {
+    id: string;
+    name: string;
   };
 }
 

@@ -1,1 +1,23 @@
-<p>chat-dialog works!</p>
+<div fxLayout="row " fxLayoutAlign="start center"  class="chat-header">
+    <span >{{reciever.firstName}} {{reciever.lastName}}
+    </span>
+
+    <span fxFlexAlign="end" class="close-chat pointer" (click)="dialogRef.close(null)">
+      <mat-icon>close</mat-icon>
+    </span>
+</div>
+
+<div fxLayout="row wrap" fxLayoutAlign="space-around center" class="pb15 pt-1">
+  <div fxFlex="85" fxFlexFill>
+    <mat-form-field class="full-width pl5" appearance="outline">
+      <mat-label>Message</mat-label>
+      <input #address matInput placeholder="Type in your message"  [formControl]="messageControl"
+        type="text"/>
+    </mat-form-field>
+  </div>
+  <div fxFlex="10" class="mb5 pl5" mat-dialog-actions>
+    <button mat-mini-fab color="primary"  [mat-dialog-close]="messageControl.value" [disabled]="messageControl.invalid">
+      <mat-icon>send</mat-icon>
+    </button>
+  </div>
+</div>

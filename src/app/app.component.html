@@ -1,78 +1,62 @@
-<div fxFlex="100">
-    <div fxLayout="row" fxLayoutAlign="start center" class="container">
-      <div fxFlex="3">
-        <button mat-icon-button (click)="snav.toggle()"><i class="material-icons">menu</i></button>
-      </div>
-
-      <div fxFlex="10">
-        <div>
-          <button mat-mini-fab>
-            <i class="material-icons pointer">search</i>
-          </button>
-          </div>
-      </div>
-
-      <div fxFlex fxFlexFill>
-        <div fxLayout="row" fxLayoutAlign="end center">
-
-          <div fxFlex="7">
-            <button mat-button>
-              <span fxFlex>
-                <i class="material-icons add-content pointer">add</i>
-              </span>
-              Add
-              </button>
-          </div>
-
-          <div fxFlex="2">
-              <span>
-                <i class="material-icons pointer">mail</i>
-              </span>
-          </div>
-
+<div fxFlex>
+        <div fxLayout="row" fxLayoutAlign="start center" class="container">
           <div fxFlex="20">
-            <mat-form-field>
-              <mat-label>Select contact</mat-label>
-              <mat-select (selectionChange)="onSelectLoginContact($event)">
-                <mat-option *ngFor="let contact of contactService.contacts | async" [value]="contact">
-                  {{contact.firstName}} {{ contact.lastName}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
+            <button mat-icon-button><i class="material-icons">menu</i></button>
           </div>
 
-          <div fxFlex="2">
-            <span>
-              <i class="material-icons pointer">notifications_none</i>
-            </span>
+          <div fxFlex="10">
+            <div>
+              <button mat-mini-fab  matTooltip="Search">
+                <i class="material-icons pointer">search</i>
+              </button>
+              </div>
           </div>
 
+          <div fxFlex fxFlexFill>
+            <div fxLayout="row" fxLayoutAlign="end center">
+
+              <div fxFlex="7">
+                <button mat-button matTooltip="Add">
+                  <span fxFlex>
+                    <i class="material-icons add-content pointer">add</i>
+                  </span>
+                  Add
+                  </button>
+              </div>
+
+              <div fxFlex="2">
+                  <span matTooltip="Mail">
+                    <i class="material-icons pointer">mail</i>
+                  </span>
+              </div>
+
+              <div fxFlex="20">
+                <mat-form-field>
+                  <mat-select (selectionChange)="onSelectLoginContact($event.value)" [formControl]="loggedInControl">
+                    <mat-option *ngFor="let contact of contactService.currentContacts | async" [value]="contact">
+                      {{contact.firstName}} {{ contact.lastName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+              <div fxFlex="2">
+                <span matTooltip="Notifications">
+                  <i class="material-icons pointer">notifications_none</i>
+                </span>
+              </div>
+
+            </div>
+          </div>
         </div>
-      </div>
+
+        <div fxLayoutAlign="column wrap" fxLayoutAlign="center start">
+          <div fxFlex="3" style="height: 500px; background-color: lightcoral;">
+
+          </div>
+          <div fxFlex>
+            <router-outlet></router-outlet>
+          </div>
+        </div>
+
     </div>
-
-
-  <mat-sidenav-container class="example-container">
-
-    <mat-sidenav #snav mode="push" (closedStart)="onCloseSideNav()" position="start" class="sideNav">
-
-      <div mat-list-item [routerLink]="nav.routePath" (click)="snav.close()" routerLinkActive="active" *ngFor="let nav of navigations">
-        <span >
-          <i class="material-icons navigation-icon">{{nav.iconName}}</i>
-        </span>
-      </div>
-
-      <mat-nav-list *ngIf="snav.opened">
-        <a mat-list-item [routerLink]="nav.routePath" (click)="snav.close()" routerLinkActive="active" *ngFor="let nav of navigations">
-          <i class="material-icons navigation-icon">{{nav.iconName}}</i>
-          {{ nav.displayName}}
-        </a>
-      </mat-nav-list>
-    </mat-sidenav>
-
-    <mat-sidenav-content>
-      <!-- <p *ngFor="let content of fillerContent">{{content}}</p> -->
-        <router-outlet></router-outlet>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
-</div>

@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ContactService } from 'src/app/services/contact.service';
-import { Contact } from '../models';
+import { Contact, Message, MessageType } from '../models';
 import { Subscription, Observable } from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
@@ -9,6 +9,7 @@ import { CreateContactDialogComponent } from 'src/app/shared/shared/create-conta
 import { Guid } from 'guid-typescript';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfirmationDialogComponent } from 'src/app/shared/shared/confirmation-dialog/confirmation-dialog.component';
+import { ChatDialogComponent } from 'src/app/shared/shared/chat-dialog/chat-dialog.component';
 
 @Component({
   selector: 'app-contact-container',
@@ -18,6 +19,7 @@ import { ConfirmationDialogComponent } from 'src/app/shared/shared/confirmation-
 export class ContactContainerComponent implements OnInit {
   contacts: Contact[] = [];
   selectedContact: Contact;
+  loggedInContact: Contact;
   selectedCount: number;
   subscription: Subscription;
   searchControl = new FormControl();
@@ -29,6 +31,7 @@ export class ContactContainerComponent implements OnInit {
   ngOnInit(): void {
     this.subscription = this.contactService.currentContacts.subscribe((contacts) => {
       this.contacts = contacts.filter(c => !c.isLoggedIn);
+      this.loggedInContact = contacts.find(c => c.isLoggedIn);
       this.selectedContact = null;
       this.selectedCount = 0;
     });
@@ -88,7 +91,7 @@ export class ContactContainerComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      if (!result && typeof result === 'string') {
+      if (!result || typeof result === 'string') {
         return;
       }
       const newContact: Contact = Object.assign({}, contact, result);
@@ -110,12 +113,33 @@ export class ContactContainerComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      if (!result && typeof result === 'string') {
+      if (!result || typeof result === 'string') {
         return;
       }
       const newContact: Contact = Object.assign({}, contact, result);
       this.contactService.createContact(newContact);
       this.matSnackBar.open(`${newContact.firstName} ${ newContact.lastName} created`, 'close', { duration: 2000});
+    });
+  }
+
+  sendMessageTo(reciever: Contact) {
+    const dialogRef = this.matDialog.open(ChatDialogComponent, {
+      minWidth: '30%',
+      minHeight: '40%',
+      panelClass: 'custom-dialog-container',
+      data: {
+        sender: this.loggedInContact,
+        reciever
+      }
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (!result) {
+          return;
+      }
+
+      this.contactService.sendMessage(this.loggedInContact, reciever, result);
+      this.matSnackBar.open(`Message sent to ${reciever.firstName}`, 'close', { duration: 2000});
     });
   }
 
@@ -125,9 +149,13 @@ export class ContactContainerComponent implements OnInit {
   }
 
   contactSelectionChange({checked, contact}: {checked: boolean, contact: Contact}) {
-    contact.isSelected = checked;
-    this.selectedContact = { ...contact};
-    this.contacts = this.contacts.map(c => c.contactId === contact.contactId ? this.selectedContact : c);
+    if (checked) {
+      contact.isSelected = checked;
+      this.selectedContact = { ...contact};
+    } else {
+      this.selectedContact = null;
+    }
+    this.contacts = this.contacts.map(c => c.contactId === contact.contactId ? contact : c);
     this.selectedCount = this.getSelectedCount();
   }
 

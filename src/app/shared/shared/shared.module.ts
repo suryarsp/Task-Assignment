@@ -23,10 +23,12 @@ import {MatDividerModule} from '@angular/material/divider'
 
 // 3rd party imports
 import { AvatarModule } from 'ngx-avatar';
+
 import {  ReactiveFormsModule } from '@angular/forms';
 import { CreateContactDialogComponent } from './create-contact-dialog/create-contact-dialog.component';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { ChatDialogComponent } from './chat-dialog/chat-dialog.component';
+
 
 
 @NgModule({
