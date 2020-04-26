@@ -1,6 +1,6 @@
-<div fxLayout="row wrap" fxLayoutAlign="center end" fxLayoutGap="15px">
+<div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="15px">
 <!-- Contact Header -->
-<div fxFlex="60" fxFlex.lt-sm="100">
+<div fxFlex="60" fxFlex.lt-lg="100">
   <!-- Contact Label and Header -->
   <div fxLayout="row" fxLayoutAlign="start center">
     <app-contact-header></app-contact-header>
@@ -8,8 +8,8 @@
 
 <!-- Contact Search and Actions -->
 
-  <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutAlign.lt-sm="center center">
-    <div fxFlex="40" fxFlex.lt-sm="100">
+  <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap.fxLayoutGap.lt-lg="10px" fxLayoutAlign.lt-lg="start center">
+    <div fxFlex="50" fxFlex.lt-lg="40">
       <mat-form-field  appearance="outline" class="search-bar">
         <input type="text"
                placeholder="Search contacts"
@@ -25,14 +25,14 @@
       </mat-form-field>
     </div>
 
-    <div fxFlex="15" fxFlex.lt-sm="50">
+    <div fxFlex fxFlex.lt-lg="30">
       <button mat-raised-button (click)="createContact()" [disabled]="selectedCount > 0" matTooltip="Add Contact">
         <i class="material-icons">add</i>
         Add Contact
       </button>
     </div>
 
-    <div fxFlex="15" fxFlex.lt-sm="50" *ngIf="selectedCount > 0">
+    <div fxFlex fxFlex.lt-lg="30" *ngIf="selectedCount > 0">
       <button mat-raised-button color="warn" (click)="deleteContacts()" matTooltip="Delete Contact">
         <i class="material-icons">delete</i>
         Delete Contact(s)
@@ -54,7 +54,7 @@
 
 
 <!-- Contact Display Information -->
- <div fxFlex="30" fxFlex.lt-sm="100" class="contact-view" >
+ <div fxFlex="30" fxFlex.lt-lg="100" class="contact-view" [hidden]="!selectedContact">
   <app-contact-information *ngIf="selectedContact" [contactSelected]="this.selectedContact"></app-contact-information>
  </div>
 </div>

@@ -14,12 +14,12 @@
 }
 
 .container {
-  padding: 5px;
+  padding: 0px;
   background-color: lightblue;
 }
 
 .add-content {
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .navigation-icon {
@@ -28,15 +28,15 @@
 }
 
 .active {
+  border-left: 2px solid darkred;
+}
+
+.vertical-menu {
   background-color: coral;
 }
 
-.mat-drawer {
-  width: 150px ;
-}
-
- .collapsed > .mat-drawer  {
-    width: 60px !important;
+.top-bar {
+  background-color: darkgoldenrod;
 }
 
 

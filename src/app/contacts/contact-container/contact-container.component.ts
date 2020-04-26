@@ -149,8 +149,8 @@ export class ContactContainerComponent implements OnInit {
   }
 
   contactSelectionChange({checked, contact}: {checked: boolean, contact: Contact}) {
+    contact.isSelected = checked;
     if (checked) {
-      contact.isSelected = checked;
       this.selectedContact = { ...contact};
     } else {
       this.selectedContact = null;

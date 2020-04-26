@@ -18,7 +18,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import {MatCardModule} from '@angular/material/card';
-import {MatDividerModule} from '@angular/material/divider'
+import {MatDividerModule} from '@angular/material/divider';
+import {MatRippleModule} from '@angular/material/core';
 
 
 // 3rd party imports
@@ -54,7 +55,8 @@ import { ChatDialogComponent } from './chat-dialog/chat-dialog.component';
     MatTooltipModule,
     MatSnackBarModule,
     MatCardModule,
-    MatDividerModule
+    MatDividerModule,
+    MatRippleModule
   ],
   exports: [
     CommonModule,
@@ -77,7 +79,8 @@ import { ChatDialogComponent } from './chat-dialog/chat-dialog.component';
     MatTooltipModule,
     MatSnackBarModule,
     MatCardModule,
-    MatDividerModule
+    MatDividerModule,
+    MatRippleModule
   ]
 })
 export class SharedModule { }

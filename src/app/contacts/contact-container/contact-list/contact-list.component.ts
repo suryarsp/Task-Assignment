@@ -33,9 +33,9 @@ export class ContactListComponent implements OnChanges, AfterViewInit {
 
   setTableEntries() {
     this.dataSource = new MatTableDataSource(this.contacts);
-    setTimeout(() => {
-      this.dataSource.paginator = this.paginator;
-    }, 0);
+    // setTimeout(() => {
+    //   this.dataSource.paginator = this.paginator;
+    // }, 0);
   }
 
 }

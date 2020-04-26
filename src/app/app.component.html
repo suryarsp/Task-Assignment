@@ -1,62 +1,69 @@
-<div fxFlex>
-        <div fxLayout="row" fxLayoutAlign="start center" class="container">
-          <div fxFlex="20">
-            <button mat-icon-button><i class="material-icons">menu</i></button>
-          </div>
+<div fxLayout="row" fxLayoutAlign="start strech" class="container">
+    <div fxFlex="3" fxLayout="column" class="vertical-menu">
+      <div style="padding-top: 10px;">
+        <i class="material-icons">menu</i>
+      </div>
 
-          <div fxFlex="10">
-            <div>
-              <button mat-mini-fab  matTooltip="Search">
-                <i class="material-icons pointer">search</i>
-              </button>
-              </div>
-          </div>
-
-          <div fxFlex fxFlexFill>
-            <div fxLayout="row" fxLayoutAlign="end center">
-
-              <div fxFlex="7">
-                <button mat-button matTooltip="Add">
-                  <span fxFlex>
-                    <i class="material-icons add-content pointer">add</i>
-                  </span>
-                  Add
-                  </button>
-              </div>
-
-              <div fxFlex="2">
-                  <span matTooltip="Mail">
-                    <i class="material-icons pointer">mail</i>
-                  </span>
-              </div>
-
-              <div fxFlex="20">
-                <mat-form-field>
-                  <mat-select (selectionChange)="onSelectLoginContact($event.value)" [formControl]="loggedInControl">
-                    <mat-option *ngFor="let contact of contactService.currentContacts | async" [value]="contact">
-                      {{contact.firstName}} {{ contact.lastName}}
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
-
-              <div fxFlex="2">
-                <span matTooltip="Notifications">
-                  <i class="material-icons pointer">notifications_none</i>
-                </span>
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-        <div fxLayoutAlign="column wrap" fxLayoutAlign="center start">
-          <div fxFlex="3" style="height: 500px; background-color: lightcoral;">
-
-          </div>
-          <div fxFlex>
-            <router-outlet></router-outlet>
-          </div>
-        </div>
-
+      <mat-nav-list>
+        <a mat-list-item [routerLink]="nav.routePath" routerLinkActive="active" *ngFor="let nav of navigations">
+          <i class="material-icons">{{nav.iconName}}</i>
+        </a>
+      </mat-nav-list>
     </div>
+
+    <div fxFlex fxFlexFill>
+      <div fxLayout="row wrap" fxLayoutAlign="start strech" class="top-bar">
+        <div fxFlex="10">
+          <div class="main-search">
+            <button mat-mini-fab matTooltip="Search">
+              <i class="material-icons pointer">search</i>
+            </button>
+          </div>
+        </div>
+
+        <div fxFlex>
+          <div fxLayout="row wrap" fxLayoutAlign="end end">
+            <div fxFlex="7">
+              <button mat-button matTooltip="Add">
+                <span fxFlex>
+                  <i class="material-icons add-content pointer">add</i>
+                </span>
+                Add
+              </button>
+            </div>
+
+            <div fxFlex="7">
+              <span matTooltip="Mail"  matTooltip="Mail">
+                <i class="material-icons pointer">mail</i>
+              </span>
+            </div>
+
+            <div fxFlex="20">
+              <mat-form-field>
+                <mat-select (selectionChange)="onSelectLoginContact($event.value)" [formControl]="loggedInControl">
+                  <mat-option *ngFor="let contact of contactService.currentContacts | async" [value]="contact">
+                    {{contact.firstName}} {{ contact.lastName}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <div fxFlex="2">
+              <span matTooltip="Notifications">
+                <i class="material-icons pointer">notifications_none</i>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    <div fxLayoutAlign="row wrap" fxLayoutAlign="start center">
+      <div fxFlex>
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+  </div>
+
+
