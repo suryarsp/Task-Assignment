@@ -15,7 +15,6 @@
 
 .container {
   padding: 0px;
-  background-color: lightblue;
 }
 
 .add-content {
@@ -32,12 +31,33 @@
 }
 
 .vertical-menu {
-  background-color: coral;
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#fa8968+46,ea6fa3+100 */
+    background: #fa8968; /* Old browsers */
+    background: -moz-linear-gradient(
+      left,
+      #fa8968 46%,
+      #ea6fa3 100%
+    ); /* FF3.6-15 */
+    background: -webkit-linear-gradient(
+      left,
+      #fa8968 46%,
+      #ea6fa3 100%
+    ); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(
+      to bottom,
+      #fa8968 46%,
+      #ea6fa3 100%
+    ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
 
 .top-bar {
-  background-color: darkgoldenrod;
+  background-color: #fff;
+  box-shadow: 1px 0 3px rgba(0, 0, 0, 0.25);
+  min-height: 40px;
+  // margin: 0 -15px 30px -15px;
 }
+
+
 
 
 

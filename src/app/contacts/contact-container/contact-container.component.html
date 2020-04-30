@@ -26,14 +26,14 @@
     </div>
 
     <div fxFlex fxFlex.lt-lg="30">
-      <button mat-raised-button (click)="createContact()" [disabled]="selectedCount > 0" matTooltip="Add Contact">
+      <button mat-raised-button class="add-contact" (click)="createContact()" [disabled]="selectedCount > 0" matTooltip="Add Contact">
         <i class="material-icons">add</i>
         Add Contact
       </button>
     </div>
 
     <div fxFlex fxFlex.lt-lg="30" *ngIf="selectedCount > 0">
-      <button mat-raised-button color="warn" (click)="deleteContacts()" matTooltip="Delete Contact">
+      <button mat-raised-button  color="warn" (click)="deleteContacts()" matTooltip="Delete Contact">
         <i class="material-icons">delete</i>
         Delete Contact(s)
       </button>
@@ -43,6 +43,7 @@
   <!-- Contact List Details -->
  <div>
   <app-contact-list
+  fxFlex
   [contacts]="contacts"
   (contactSelectionChange)="contactSelectionChange($event)"
   (editClicked)="editContact($event)"
