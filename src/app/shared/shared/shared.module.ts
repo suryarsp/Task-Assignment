@@ -20,6 +20,11 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import {MatCardModule} from '@angular/material/card';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatRippleModule} from '@angular/material/core';
+import {
+  DEFAULT_BREAKPOINTS,
+  BREAKPOINTS,
+  BreakPoint
+} from '@angular/flex-layout'
 
 
 // 3rd party imports
@@ -31,7 +36,18 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
 import { ChatDialogComponent } from './chat-dialog/chat-dialog.component';
 
 
-
+/**
+ * For mobile and tablet, reset ranges
+ */
+function updateBreakpoints(bp:BreakPoint) {
+  switch (bp.alias) {
+    case 'xs' : bp.mediaQuery =  '(max-width: 700px)'; break;
+    case 'xsl' : bp.mediaQuery =  '(min-width: 376px) and (max-width: 425px)'; break;
+    case 'xsm' : bp.mediaQuery =  '(min-width: 321px) and (max-width: 375px)'; break;
+    case 'xss' : bp.mediaQuery =  '(min-width: 320px)'; break;
+  }
+  return bp;
+}
 @NgModule({
   declarations: [CreateContactDialogComponent, ConfirmationDialogComponent, ChatDialogComponent],
   imports: [
@@ -81,6 +97,14 @@ import { ChatDialogComponent } from './chat-dialog/chat-dialog.component';
     MatCardModule,
     MatDividerModule,
     MatRippleModule
+  ],
+  providers: [
+    {
+      provide: BREAKPOINTS,
+      useFactory : function customizeBreakPoints() {
+        return DEFAULT_BREAKPOINTS.map( updateBreakpoints );
+      }
+    }
   ]
 })
 export class SharedModule { }

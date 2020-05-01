@@ -1,6 +1,6 @@
 <div fxLayout="row" fxLayoutAlign="start strech" class="container">
-    <div fxFlex="3" fxLayout="column" class="vertical-menu">
-      <div style="padding-top: 10px;">
+    <div fxFlex.xl="2" fxflex.lg="4" fxFlex.sm="7" fxFlex.md="6"  fxFlex.xsl="14" fxLayout="column" class="vertical-menu">
+      <div style="padding-top: 10px; display: flex;justify-content: center;">
         <i class="material-icons">menu</i>
       </div>
 
@@ -13,7 +13,7 @@
 
     <div fxFlex fxFlexFill>
       <div fxLayout="row wrap" fxLayoutAlign="start strech" class="top-bar">
-        <div fxFlex="10">
+        <div fxFlex="10" fxFlex.md="5" fxFlex.sm="7" fxFlex.xs="15">
           <div class="main-search">
             <button mat-mini-fab color="default" matTooltip="Search">
               <i class="material-icons pointer">search</i>
@@ -22,9 +22,12 @@
         </div>
 
         <div fxFlex>
-          <div fxLayout="row wrap" fxLayoutAlign="end end">
-            <div fxFlex="7">
-              <button mat-button matTooltip="Add">
+          <div fxLayout="row wrap"
+          fxLayoutAlign="end center"
+          fxLayoutAlign.xs="center center"
+          >
+            <div fxFlex="7"  fxFlex.md="10" fxFlex.sm="20" fxHide.xs>
+              <button mat-raised-button color="default" matTooltip="Add">
                 <span fxFlex>
                   <i class="material-icons add-content pointer">add</i>
                 </span>
@@ -32,13 +35,13 @@
               </button>
             </div>
 
-            <div fxFlex="7">
+            <div fxFlex="5"  fxFlex.md="7" fxFlex.sm="10"  fxFlex.xs="15">
               <span matTooltip="Mail"  matTooltip="Mail">
                 <i class="material-icons pointer">mail</i>
               </span>
             </div>
 
-            <div fxFlex="20">
+            <div fxFlex="18" fxFlex.md="25" fxFlex.sm="35" fxFlex.xs="65">
               <mat-form-field>
                 <mat-select (selectionChange)="onSelectLoginContact($event.value)" [formControl]="loggedInControl">
                   <mat-option *ngFor="let contact of contactService.currentContacts | async" [value]="contact">
@@ -48,7 +51,7 @@
               </mat-form-field>
             </div>
 
-            <div fxFlex="2">
+            <div fxFlex="4" fxFlex.md="6" fxFlex.sm="6" fxFlex.xs="5" >
               <span matTooltip="Notifications">
                 <i class="material-icons pointer">notifications_none</i>
               </span>

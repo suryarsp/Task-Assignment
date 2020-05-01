@@ -1,17 +1,16 @@
-<div  class="contact-header">
-
-  <div fxFlex="8" fxFlexAlign="center" class="contact-icon">
+<div fxLayout="row wrap" fxLayoutAlign="start center"  class="contact-header">
+  <div fxFlex="8" fxFlex.xs="12" fxFlexAlign="center" class="contact-icon">
     <mat-icon svgIcon="contact-book"></mat-icon>
   </div>
 
-  <div fxFlex="20" fxFlexAlign="center" class="pl-1">
-        <div style="float: left;">
+  <div fxFlex="20" fxFlex.xs="50" fxFlexAlign="center" class="pl-2">
+        <div style="float: left;padding-left: 10px; font-size: 22px;">
           <span>Contacts</span>
         </div>
   </div>
 
-  <div fxFlex="40" fxFlexAlign="center">
-    <span>Sort By :</span>
+  <div fxFlex fxFlex.xs="100"  fxFlexAlign="center">
+    <span class="pr-1">Sort By :</span>
     <span class="pl10">
       <mat-form-field >
         <mat-select [formControl]="sortControl">
