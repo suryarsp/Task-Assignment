@@ -1,13 +1,25 @@
 table {
-  width: 100%;
+  width: -webkit-fill-available;
   height: 700px;
   margin-left: 10px;
+
+
+    tr.mat-row, tr.mat-footer-row {
+        &:hover {
+          background-color: rgba(113, 114, 114, 0.383);
+          cursor: pointer;
+        }
+    }
 }
 
 table th:first-child(1) {
     font-size: 22px;
     font-weight: 600 ;
     line-height: 2;
+}
+
+tr.mat-row, tr.mat-footer-row {
+  border-radius: 5px;
 }
 
 .avatar {
@@ -38,5 +50,5 @@ table th:first-child(1) {
 }
 
 .text-info-sm {
-  text-indent: 20px;
+  text-indent: 5px;
 }

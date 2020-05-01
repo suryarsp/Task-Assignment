@@ -1,20 +1,20 @@
-<div class="contact-table">
-  <table mat-table [dataSource]="dataSource">
+<div>
+  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z24 ma20">
 
     <!-- Add Column -->
     <ng-container matColumnDef="add">
-      <th mat-header-cell *matHeaderCellDef style="width: 60px;" [ngStyle.xs]="{'width.px':20}">
+      <th mat-header-cell *matHeaderCellDef style="width: 60px;" [ngStyle.xs]="{'width.px':10, 'padding-left.px': 10}">
         <i class="material-icons" matTooltip="Add" >add</i>
       </th>
-      <td mat-cell *matCellDef="let element" style="width: 60px;" [ngStyle.xs]="{'width.px':20}">
+      <td mat-cell *matCellDef="let element" style="width: 60px;" [ngStyle.xs]="{'width.px':10,'padding-left.px': 10}">
         <mat-checkbox [id]="element.contactId" [checked]="element.isSelected" (change)="contactSelectionChange.emit({ checked: $event.checked, contact: element})"></mat-checkbox>
       </td>
     </ng-container>
 
     <!-- Basic Info Column -->
-    <ng-container matColumnDef="basicInfo">
-      <th mat-header-cell *matHeaderCellDef style="width: 500px;" [ngStyle.sm]="{'width.px':300}" [ngStyle.xs]="{'width.px':100, 'text-align': 'center'}"> Basic Info </th>
-      <td mat-cell *matCellDef="let element" style="width: 500px;" [ngStyle.sm]="{'width.px':300}" [ngStyle.xs]="{'width.px':100}">
+    <ng-container matColumnDef="basicInfo"  mat-sort-header>
+      <th mat-header-cell *matHeaderCellDef style="width: 500px;" [ngStyle.sm]="{'width.px':300}" [ngStyle.xs]="{'width.px':50, 'text-align': 'center'}"> Basic Info </th>
+      <td mat-cell *matCellDef="let element" style="width: 500px;" [ngStyle.sm]="{'width.px':300}" [ngStyle.xs]="{'width.px':50}">
         <div>
           <span class="avatar" [fxHide.xs]="true">
             <ngx-avatar size="40"  name="{{ element.firstName}} {{ element.lastName}}"></ngx-avatar>
@@ -23,7 +23,7 @@
             <span class="full-Name">
               {{ element.firstName}} {{ element.lastName}}
             </span>
-              <span class="email-address" >
+              <span class="email-address" [ngStyle.xs]="{'text-indent.px': 2}">
                 {{ element.emailAddress }}
               </span>
           </span>
@@ -33,7 +33,7 @@
     </ng-container>
 
     <!-- Company Column -->
-    <ng-container matColumnDef="company" >
+    <ng-container matColumnDef="company"  mat-sort-header>
       <th mat-header-cell *matHeaderCellDef [ngStyle.lg]="{'width.px':90}" fxHide.xs> Company </th>
       <td mat-cell *matCellDef="let element" [ngStyle.lg]="{'width.px':90}" fxHide.xs>
         <span class="company">
@@ -51,22 +51,22 @@
 
     <!-- Edit Column -->
     <ng-container matColumnDef="edit">
-      <th mat-header-cell *matHeaderCellDef style="width: 60px;" [ngStyle.xs]="{'width.px':40}">  </th>
-      <td mat-cell *matCellDef="let element" style="width: 60px;" [ngStyle.xs]="{'width.px':40}">
+      <th mat-header-cell *matHeaderCellDef style="width: 60px;" [ngStyle.xs]="{'width.px':30}">  </th>
+      <td mat-cell *matCellDef="let element" style="width: 60px;" [ngStyle.xs]="{'width.px':30}">
         <i class="material-icons pointer" (click)="editClicked.emit(element)" matTooltipPosition="above" matTooltip="Edit">edit</i>
       </td>
     </ng-container>
 
     <!-- Delete Column -->
     <ng-container matColumnDef="delete">
-      <th mat-header-cell *matHeaderCellDef style="width: 20px;" [ngStyle.xs]="{'width.px':20}">  </th>
-      <td mat-cell *matCellDef="let element"  style="width: 20px;" [ngStyle.xs]="{'width.px':20}">
+      <th mat-header-cell *matHeaderCellDef style="width: 20px;" [ngStyle.xs]="{'width.px':10}">  </th>
+      <td mat-cell *matCellDef="let element"  style="width: 20px;" [ngStyle.xs]="{'width.px':10}">
           <i class="material-icons pointer" (click)="deleteClicked.emit(element)" matTooltipPosition="above" matTooltip="Delete">delete</i>
       </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="contactSelectionChange.emit({ checked: row.isSelected ? false : true, contact: row})"></tr>
   </table>
 
   <!-- <mat-paginator [pageSizeOptions]="[10, 20, 40]" showFirstLastButtons></mat-paginator> -->
